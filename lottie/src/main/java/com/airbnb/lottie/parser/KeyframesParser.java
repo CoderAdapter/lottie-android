@@ -61,6 +61,11 @@ class KeyframesParser {
    * keyframe though.
    */
   public static <T> void setEndFrames(List<? extends Keyframe<T>> keyframes) {
+    // There should never be 0 keyframes.
+    // If there is only one, there are no end frames/values to set.
+    if (keyframes.size() < 2) {
+      return;
+    }
     int size = keyframes.size();
     for (int i = 0; i < size - 1; i++) {
       // In the json, the keyframes only contain their starting frame.
